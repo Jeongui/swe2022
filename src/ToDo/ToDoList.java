@@ -23,7 +23,7 @@ public class ToDoList {
     }
 
     public void setDirection() {
-
+        doList.sort();
     }
 
     public void hideList() {
