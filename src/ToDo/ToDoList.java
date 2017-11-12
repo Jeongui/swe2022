@@ -26,11 +26,7 @@ public class ToDoList {
 
     }
 
-    public void setTheme(){
-
-    }
-
-    public void hideList(){
+    public void hideList() {
 
     }
 
