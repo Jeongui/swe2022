@@ -1,33 +1,52 @@
 package ToDo;
 
-import java.util.ArrayList;
+import java.util.Date;
 
-public class ToDoTask {
+public class ToDoTask implements Comparable<ToDoTask>{
+    private String taskname;
+    private Date deadline;
+    private boolean done;
 
-    private static ArrayList<String> task = new ArrayList<>();
 
-    private final String name;
-    private final int date;
-
-    public ToDoTask(String name) throws Exception {
-        if (task.contains(name)) throw new Exception();
-        this.name = getName();
-        this.date = getDate();
-        task.add(this.name);
+    public ToDoTask(String taskname) {
+        this.taskname = taskname;
+        this.deadline = new Date();
+        this.done = false;
     }
 
-    private String getName() {
-        return name;
+    public void setTaskname(String settingname) {
+        this.taskname = settingname;
+    } // 할 일
+
+    public void setDeadline(int year1, int month1, int date1){
+        this.deadline.setYear(year1);
+        this.deadline.setDate(date1);
+        this.deadline.setMonth(month1);
+    } //기한 설정
+
+    public void setDone(boolean status){
+        this.done = status;
+    } // 완료 여부 확인
+
+    public String getTaskname() {
+        return this.taskname;
     }
 
-    private int getDate() {
-        return date;
+    public String getDeadline() {
+        int year1 = deadline.getYear();
+        int month1 = deadline.getMonth();
+        int date1 = deadline.getDate();
+        String yyyymmdd = year1 + "/" + month1 + "/" + date1;
+        return yyyymmdd;
     }
 
-    private int today = 171112;
-    public boolean ifComplete() {
-        if (date > today) return false;
-        return true;
+    public Boolean getDone() {
+        return this.done;
+    }
+
+    @Override
+    public int compareTo(ToDoTask o) {
+        return 0;
     }
 }
 
