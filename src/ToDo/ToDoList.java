@@ -5,7 +5,7 @@ import java.util.Collections;
 
 public class ToDoList {
 
-    private String listName;
+    public static String listName;
     private ToDoTheme listTheme;
     private ArrayList<ToDoTask> todoTasks;
     private boolean listSorted;
