@@ -1,40 +1,46 @@
 package ToDo;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ToDoList {
 
-    private static ArrayList<String> doList = new ArrayList<>() ;
+    private String listName;
+    private ToDoTheme listTheme;
+    private ArrayList<ToDoTask> todoTasks;
+    private boolean listSorted;
 
-    private String name;
-
-    public ToDoList (String name) throws Exception{
-        if(doList.contains(name)) throw new Exception();
-        this.name = name;
-        doList.add(this.name);
+    public ToDoList (String name) {
+        this.listName = name;
+        ToDoTheme defaultTheme = new ToDoTheme();
+        this.listTheme = defaultTheme;
+        this.todoTasks = new ArrayList<>();
+        this.listSorted = false;
     }
 
-    public void setName(String name) throws Exception{
-        if (name == this.name) return;
-        if(doList.contains(name)) throw new Exception();
-        doList.remove(this.name);
-        this.name = name;
-        doList.add(this.name);
+    public void setListName(String listName1){
+        this.listName = listName1;
+    } // 목록 이름 설정
+
+    public void setListTheme(ToDoTheme listTheme1){
+        this.listTheme = listTheme1;
+    } // 테마 설정
+
+    public void addToDoTasks(ToDoTask todoTasks1){
+        this.todoTasks.add(todoTasks1);
+        this.listSorted = false;
+    } //할 일 추가
+
+    public void doSort(){
+        Collections.sort(todoTasks);
+        this.listSorted = true;
+    } //정렬
+
+    public ToDoTheme getListTheme() {
+        return listTheme;
     }
 
-    public void setDirection() {
-        doList.sort();
-    }
-
-    public void hideList() {
-
-    }
-
-    public void delList() {
-        doList.remove(this.name);
-    }
-
-    public void sendList() {
-        System.out.println(doList.hashCode());
+    private String getListName() {
+        return this.listName;
     }
 }
