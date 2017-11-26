@@ -52,6 +52,18 @@ public class App extends ToDoTask{
         return (listName, deadline);
     }
 
+    public void complete(ToDoList list){
+        this.list() = list();
+        if getCompleted() == false
+        list.sortByCompleted = true;
+    }
+
+    public void incomplete(ToDoList list){
+        this.list() = list();
+        if getCompleted() == true
+        list.sortByCompleted = false;
+    }
+
     public String getList(){
         if (todoLists.isEmpty()) return "리스트를 추가해 주십시오";
         else return todoLists.toString();

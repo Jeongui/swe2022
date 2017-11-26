@@ -3,8 +3,9 @@ package ToDo;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.stream.Stream;
 
-public class ToDoList {
+public class ToDoList extends ArrayList<ToDoList> {
         private String listName;
         ArrayList<ToDoTask> todoTasks = new ArrayList<>();
         private ToDoTheme listTheme;
@@ -25,7 +26,12 @@ public class ToDoList {
             return listName;
         }
 
-        public enum sorting {CHR, REVERSE_CHR, DEADLINE,REVERSE_DEADLINE, CREATINGTIME, REVERSE_CREATINGTIME, COMPLETED, REVERSE_COMPLETED};
+    @Override
+    public Stream<ToDoList> stream() {
+        return null;
+    }
+
+    public enum sorting {CHR, REVERSE_CHR, DEADLINE,REVERSE_DEADLINE, CREATINGTIME, REVERSE_CREATINGTIME, COMPLETED, REVERSE_COMPLETED};
         public void sortTask(sorting sortingOption){
             this.listSorted = true;
             switch(sortingOption){
@@ -103,7 +109,7 @@ public class ToDoList {
             }
         };
 
-        public final Comparator sortByCompleted = new Comparator<ToDoTask>() {
+        public boolean sortByCompleted = new Comparator<ToDoTask>() {
 
             @Override
             public int compare(ToDoTask o1, ToDoTask o2) {
