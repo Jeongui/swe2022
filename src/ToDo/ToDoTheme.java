@@ -1,20 +1,29 @@
 package ToDo;
+
 public class ToDoTheme {
+    private TodoThemeColors themeColor;
+    private TodoThemeImages themeImage;
 
-    public enum Color {RED, GREEN, BLUE};
-
-    private static ToDoTheme.Color color;
-
-    public ToDoTheme(ToDoTheme.Color $color){
-        final ToDoTheme.Color color = $color;
-        this.color = color;
+    public ToDoTheme(){
+        this.themeImage = TodoThemeImages.MOUNTAIN;
+        this.themeColor = TodoThemeColors.BLUE;
     }
 
-    public static String toString(String listTheme1, String listTheme2, String listTheme3){
-        switch (color){
-            case RED: return listTheme1;
-            case GREEN: return listTheme2;
-            case BLUE: return listTheme3;
-        }
+    public enum TodoThemeColors {BLUE,RED,PURPLE,SKYBLUE,GREEN}
+    public enum TodoThemeImages {MOUNTAIN, TROPICAL, OCEAN, SKY, CITY, BLANK}
+
+    public void changeThemeColor(TodoThemeColors color){
+        this.themeColor =color;
+    }
+    public void changeThemeImage(TodoThemeImages image){
+        this.themeImage =image;
+    }
+
+    public TodoThemeColors getThemeColor(){
+        return this.themeColor;
+    }
+    public TodoThemeImages getThemeImage(){
+        return this.themeImage;
     }
 }
+
