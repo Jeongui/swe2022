@@ -1,14 +1,25 @@
 package ToDo;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
 
 public class App {
-    ArrayList <ToDoList> todoLists;
+    ArrayList <ToDoList> todoLists ;
 
-    //생성자
+
+    public static void main(ArrayList todoLists){
+        Scanner in = new Scanner(System.in).useDelimiter("\\s");
+        while (in.hasNext()){
+            String name = in.next();
+            if (name==null) break;
+        }
+    }
+
+
+
     public App(){
         this.todoLists = new ArrayList<>();
     }
@@ -29,9 +40,8 @@ public class App {
         else return todoLists.toString();
     }
 
-    //3번과제
     public void list (String list){
-        Scanner in = new Scanner(list).useDelimiter("\\n");
+        Scanner in = new Scanner(list).useDelimiter("\\s");
         System.out.println("Set the list name");
         String listName = in.nextLine();
         System.out.println("Set the deadline");
