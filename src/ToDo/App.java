@@ -1,12 +1,11 @@
 package ToDo;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Scanner;
 
-public class App {
-    ArrayList <ToDoList> todoLists ;
+public class App extends ToDoTask{
+    ArrayList <ToDoList> todoLists  = new ArrayList<>();
 
 
     public static void main(ArrayList todoLists){
@@ -33,14 +32,16 @@ public class App {
             todoLists.remove(list);
     }
 
-    public String getList(){
-        if (todoLists.isEmpty()) return "리스트를 추가해 주십시오";
-        else return todoLists.toString();
+    public String list (ToDoList newList){
+        this.todoLists = newList;
+        String name = getName();
+        LocalDate date = getDeadline();
+        Boolean isAlarm = isAlarm();
+        return name + "\n" + date + "\n" + isAlarm;
     }
 
-
-    public void list (String list){
-        Scanner in = new Scanner(list).useDelimiter("\\s");
+    public void addTodo (String addTodo){
+        Scanner in = new Scanner(addTodo).useDelimiter("\\s");
         System.out.println("Set the list name");
         String listName = in.nextLine();
         System.out.println("Set the deadline");
@@ -49,6 +50,11 @@ public class App {
         boolean isAlarm = in.hasNext();
         if (isAlarm = true) return (listName, deadline, isAlarm);
         return (listName, deadline);
+    }
+
+    public String getList(){
+        if (todoLists.isEmpty()) return "리스트를 추가해 주십시오";
+        else return todoLists.toString();
     }
 
 
