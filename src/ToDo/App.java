@@ -1,6 +1,5 @@
 package ToDo;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -14,11 +13,10 @@ public class App {
         Scanner in = new Scanner(System.in).useDelimiter("\\s");
         while (in.hasNext()){
             String name = in.next();
+            int tasks = in.nextByte();
             if (name==null) break;
         }
     }
-
-
 
     public App(){
         this.todoLists = new ArrayList<>();
@@ -26,7 +24,7 @@ public class App {
 
     public void addList(ToDoList newList){
         todoLists.add(newList);
-
+        return main(ArrayList);
     }
 
     public void removeList(ToDoList list){
@@ -39,6 +37,7 @@ public class App {
         if (todoLists.isEmpty()) return "리스트를 추가해 주십시오";
         else return todoLists.toString();
     }
+
 
     public void list (String list){
         Scanner in = new Scanner(list).useDelimiter("\\s");
