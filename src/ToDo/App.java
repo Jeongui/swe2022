@@ -1,73 +1,61 @@
 package ToDo;
 
-import java.time.LocalDate;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
-import java.util.Scanner;
 
-public class App extends ToDoTask{
-    ArrayList <ToDoList> todoLists  = new ArrayList<>();
+public class App implements Serializable {
+    private ArrayList<TodoList> appTodoList;
+    public String appOwner;
 
+    public App(String userName) {
+        this.appOwner = userName;
+        appTodoList = new ArrayList<TodoList>();
+    }
 
-    public static void main(ArrayList todoLists){
-        Scanner in = new Scanner(System.in).useDelimiter("\\s");
-        while (in.hasNext()){
-            String name = in.next();
-            int tasks = in.nextByte();
-            if (name==null) break;
+    public void removeTodoList(TodoList list1) {
+        appTodoList.remove(list1);
+    }
+
+    public void addTodoList(TodoList list1) {
+        appTodoList.add(list1);
+    }
+
+    public void getTodoList() {
+        for (TodoList a : this.appTodoList) {
+            String b = a.getListname();
+            System.out.println(b);
         }
     }
 
-    public App(){
-        this.todoLists = new ArrayList<>();
+    public ArrayList<TodoList> getAppTodoList() {
+        return appTodoList;
     }
 
-    public void addList(ToDoList newList){
-        todoLists.add(newList);
-        return main(ArrayList);
+    public String getAppOwner() {
+        return appOwner;
     }
 
-    public void removeList(ToDoList list){
-        if (!(todoLists.isEmpty())
-                && todoLists.contains(list))
-            todoLists.remove(list);
+    public void viewTodoList() { //3주차 print
+        for (TodoList a : this.appTodoList) {
+            int sizeOfTodoList = a.getTodoTasks().size();
+            String result = String.format("- %s %d", a.getListname(), sizeOfTodoList);
+            System.out.println(result);
+        }
     }
 
-    public String list (ToDoList newList){
-        this.todoLists = newList;
-        String name = getName();
-        LocalDate date = getDeadline();
-        Boolean isAlarm = isAlarm();
-        return name + "\n" + date + "\n" + isAlarm;
+    public TodoList findAppTodoList(String aaa) {
+        TodoList result = null;
+        for (TodoList t : appTodoList) {
+            boolean k = t.getListname().equals(aaa);
+            if (k) {
+                result = t;
+            }
+        }
+        return result;
     }
-
-    public void addTodo (String addTodo){
-        Scanner in = new Scanner(addTodo).useDelimiter("\\s");
-        System.out.println("Set the list name");
-        String listName = in.nextLine();
-        System.out.println("Set the deadline");
-        int deadline = in.nextInt();
-        System.out.println("Check the alarm");
-        boolean isAlarm = in.hasNext();
-        if (isAlarm = true) return (listName, deadline, isAlarm);
-        return (listName, deadline);
-    }
-
-    public void complete(ToDoList list){
-        this.list() = list();
-        if getCompleted() == false
-        list.sortByCompleted = true;
-    }
-
-    public void incomplete(ToDoList list){
-        this.list() = list();
-        if getCompleted() == true
-        list.sortByCompleted = false;
-    }
-
-    public String getList(){
-        if (todoLists.isEmpty()) return "리스트를 추가해 주십시오";
-        else return todoLists.toString();
-    }
-
 
 }
