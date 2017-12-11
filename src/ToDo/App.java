@@ -60,8 +60,13 @@ public class App implements Serializable {
 
     public void save() throws IOException {
         Path path = Paths.get("/c:/test");
-        OutputStream out = Files.newOutputStream(path);
+        ObjectOutputStream out = new ObjectOutputStream(Files.newOutputStream(path));
         Files.copy((Path) out, path, StandardCopyOption.REPLACE_EXISTING);
+    }
+
+    public void load() throws IOException{
+        Path path = Paths.get("/c:/test");
+        ObjectInputStream in = new ObjectInputStream(Files.newInputStream(path));
     }
 
 }
