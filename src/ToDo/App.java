@@ -58,4 +58,10 @@ public class App implements Serializable {
         return result;
     }
 
+    public void save() throws IOException {
+        Path path = Paths.get("/c:/test");
+        OutputStream out = Files.newOutputStream(path);
+        Files.copy((Path) out, path, StandardCopyOption.REPLACE_EXISTING);
+    }
+
 }
